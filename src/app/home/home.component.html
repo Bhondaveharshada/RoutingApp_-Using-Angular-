@@ -1,0 +1,42 @@
+<!-- <section class="vh-100" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col col-lg-9 col-xl-7">
+                <div class="card rounded-3">
+                    <div class="card-body p-4">
+
+                        <h4 class="text-center my-3 pb-3">To Do App</h4>
+
+                        <section>
+                            <table class="table mb-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">No.</th>
+                                        <th scope="col">Todo item</th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <ul>
+                                        <li *ngFor="let task of h_array; let i = index">
+                                          <span *ngIf="!task.editing">{{ task.name }}</span>
+                                          <input *ngIf="task.editing" [(ngModel)]="task.name" />
+                                    
+                                          <button (click)="editTask()">{{ task.editing ? 'Save' : 'Edit' }}</button>
+                                          <button (click)="deleteTask()">Delete</button>
+                                          <button *ngIf="task.editing" (click)="cancelEdit()">Cancel</button>
+                                        </li>
+                                      </ul>
+                                </tbody>
+                            </table>
+
+
+                        </section>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
