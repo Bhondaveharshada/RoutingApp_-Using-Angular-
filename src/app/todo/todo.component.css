@@ -4,3 +4,6 @@
 .update{
     border: none ;
 }
+.check{
+    text-decoration: line-through;
+}

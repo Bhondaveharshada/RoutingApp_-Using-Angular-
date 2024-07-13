@@ -16,11 +16,11 @@
                 </div>
   
                 <div class="col-12">
-                  <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" (click)="save()">Save</button>
+                  <button type="submit" [disabled]="isEdit"   data-mdb-button-init data-mdb-ripple-init class="btn btn-primary" (click)="save()">Save</button>
                 </div>
   
                 <div class="col-12">
-                  <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning">Get tasks</button>
+                  <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-warning"  [disabled]="!isEdit" (click)="anotherEdit()">Update</button>
                 </div>
               </form>
   
@@ -36,12 +36,11 @@
                 <tbody>
                     <tr *ngFor="let task of arr; let i = index">
                         <th scope="row">{{ i +1}}</th>
-                        <td><input type="text"class="form-control" [ngClass]="{'edit':task.iseditable, 'update':!task.iseditable, 'third': false}" id="task" value="{{ task.taskname }}" [readOnly]="!task.iseditable" ></td>
-                        <td>{{ task.status }}</td>
+                        <td><input #taskinput type="text"class="form-control" [ngClass]="{'edit':task.iseditable, 'update':!task.iseditable, 'check':task.iscompleted}" id="task" value="{{ task.taskname }}" [readOnly]="task.iseditable" ></td>
+                        <td><input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" (click)="ischecked(i)"></td>
                         <td>
-                            <button (click)="editTask(i)" [disabled]="task.iseditable">Edit</button>
+                            <button (click)="editTask(i,taskinput)" [disabled]="task.iseditable">Edit</button>
                             <button (click)="deleteTask(i)">Delete</button>
-                            <button  (click)="updateEdit(i)" [disabled]="!task.iseditable">update</button>
                         </td>
                       </tr>
                 </tbody>

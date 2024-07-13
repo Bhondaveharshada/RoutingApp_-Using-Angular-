@@ -8,47 +8,70 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [RouterModule,FormsModule,HomeComponent,CommonModule],
+  imports: [RouterModule, FormsModule, HomeComponent, CommonModule],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css'
 })
 export class TodoComponent {
-  taskstring:string= "";
-  arr:any[]=[{}];
- // editing:boolean = false;
+  taskstring: string = "";
+  arr: any[] = [];
+  // editing:boolean = false;
   //status:string ="";
-  button="Edit";
-
-  save(){
-    if(this.taskstring){
+  button = "Edit";
+  checked = false;
+  index!: number
+  isEdit: boolean = false
+  save() {
+    if (this.taskstring) {
       console.log(this.taskstring);
-      this.arr.push({taskname:this.taskstring,status:"In progress",iseditable:false})
+      this.arr.push({ taskname: this.taskstring, iscompleted: false, iseditable: false })
       //HomeComponent.h_array = this.arr;
       console.log(this.arr);
       //this.status = "In progress";
 
       this.taskstring = "";
 
-      
-    }else{
+    }
+    else {
       console.log('taskstring is empty or undifines');
-      
     }
   }
-  editTask(index:number){
-   //this.arr[index].iseditable = true;
-   this.arr[index].iseditable =true;
-   
+  editTask(index: number, inputref: HTMLInputElement) {
+    //this.arr[index].iseditable = true;
+
+    this.isEdit = true
+    this.arr[index].iseditable = true;
+    this.arr[index].taskname = inputref.value;
+    this.taskstring = this.arr[index].taskname;
+    inputref.value=''
+    this.index = index
   }
-  deleteTask(index:number){
+  anotherEdit() {
+    this.arr[this.index].taskname = this.taskstring
+    this.isEdit = false
+    this.arr[this.index].iseditable = false;
+    
+    this.index = 1
+    this.taskstring = ''
+  }
+  deleteTask(index: number) {
+    if (confirm("do you want to delete this task")) {
+      this.arr.splice(index, 1);
+    }
+
 
   }
-  updateEdit(index:number){
-    this.arr[index].iseditable =false;
+  updateEdit(index: number) {
+    this.arr[index].iseditable = false;
 
   }
-    
-    
+  ischecked(index: number) {
+    this.arr[index].iscompleted = !this.arr[index].iscompleted;
+    console.log(this.arr);
+
+
+  }
+
+
 
 }
- 
