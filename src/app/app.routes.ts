@@ -7,6 +7,7 @@ import { ReativeformComponent } from './reativeform/reativeform.component';
 import { GetApiComponent } from './get-api/get-api.component';
 import { PostApiComponent } from './post-api/post-api.component';
 import { LoginComponent } from './login/login.component';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [{
     path:"register", component: RegisterComponent
@@ -18,13 +19,13 @@ export const routes: Routes = [{
     path:"home",component:HomeComponent
 },
 {
-   path:"reactiveForm", component:ReativeformComponent
+   path:"reactiveForm", component:ReativeformComponent,canActivate:[authGuard]
 },
 {
-    path:"getapi", component: GetApiComponent
+    path:"getapi", component: GetApiComponent, canActivate:[authGuard]
 },
 {
-  path:"postapi", component:PostApiComponent
+  path:"postapi", component:PostApiComponent, canActivate:[authGuard]
 },
 {
   path:"login", component:LoginComponent
