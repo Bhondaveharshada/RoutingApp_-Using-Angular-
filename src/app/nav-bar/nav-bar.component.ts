@@ -11,4 +11,6 @@ import { RegisterComponent } from '../register/register.component';
 })
 export class NavBarComponent {
 
+   
+    
 }

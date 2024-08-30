@@ -1,0 +1,14 @@
+<p>get-api works!</p>
+
+
+<div class="row">
+    <div class="col-3
+     d-flex align-items-center justify-content-center">
+        <button class="btn btn-primary " (click)="getAllusers()">GetUser</button>
+<br>
+    </div>
+    @for(user of userlist; track $index){
+        <li>{{user |json}}</li>
+    }
+   
+</div>

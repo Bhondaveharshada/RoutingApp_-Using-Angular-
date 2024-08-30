@@ -1,0 +1,152 @@
+ <!-- <p>reativeform works!</p> 
+<div style="text-align: center; background-color: bisque;"><h3>Registration with ReactiveForm</h3></div>
+
+<div style="text-align: center; margin-top: 7%;">
+    <form [formGroup]="regForm" (ngSubmit)="register(regForm)">
+        <div>
+            first name: <input type="text" placeholder="Enter your first name" formControlName="fname">
+              @if(regForm.controls['fname'].touched && !regForm.controls['fname'].valid){
+                <p>First name is required!</p>
+            } 
+            @if(regForm.controls['fname'].hasError('required') && regForm.controls['fname'].touched){
+                <p>first name is required</p>
+            }@else if (regForm.controls['fname'].hasError('minlength')) {
+                <p>name should be at least 2character long</p>
+            }@else if(regForm.controls['fname'].hasError('maxlength')){
+                <p>name should be less than 10chras</p>
+            }
+        </div>
+        <br>
+        <div>
+            Last name: <input type="text" placeholder="Enter your Last name" formControlName="lname">
+            @if(regForm.controls['lname'].touched && regForm.controls['lname'].hasError('required')){
+                <p>Last name is required!</p>
+            }@else if (regForm.controls['lname'].hasError('minlength')) {
+                <p>name should be at least 2character long</p>
+            }@else if(regForm.controls['lname'].hasError('maxlength')){
+                <p>name should be less than 10chras</p>
+            }
+        </div>
+        <br>
+        <div>
+            Email: <input type="text" placeholder="Enter your email" formControlName="email">
+            @if(regForm.controls['email'].touched && !regForm.controls['email'].valid){
+                <p>Email is required!</p>
+             }
+        </div>
+        <br>
+        <div>
+            Mobile No: <input type="number" placeholder="Enter your MobileNo" formControlName="mobileno">
+            @if(regForm.controls['mobileno'].touched && !regForm.controls['mobileno'].valid){
+                <p>Mobile No is required!</p>
+             }
+        </div><br>
+        <button type="submit">Register</button>
+        <button (click)="fillData()">Fill Data</button>
+    </form>
+</div> -->
+
+
+<div class="mt-2 p-2 bg-success text-white rounded">
+   <h3>Reactive Forms In Angular</h3>
+   <h3>Registration Page</h3>
+</div>
+<br> 
+<form [formGroup]="userForm"  class="container row g-5 d-flex justify-content-center align-item-center " >
+    <div class="col-md-4">
+        <label class="form-label">First name</label>
+        <input type="text" class="form-control" formControlName="fname">
+        <div class="text-danger">
+            @if(userForm.controls['fname'].hasError('required') && userForm.controls['fname'].touched){
+                <span>Required!!.</span>
+            }@else if (userForm.controls['fname'].hasError('minlength')) {
+               <span>name should be at least 2character long</span>
+            }@else if (userForm.controls['fname'].hasError('maxlength')) {
+                <span> name should be less than 10characters.</span>
+            }
+        </div>
+        
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Last name</label>
+        <input type="text" class="form-control" formControlName="lname">
+        <div class="text-danger">
+            @if(userForm.controls['lname'].hasError('required') && userForm.controls['lname'].touched){
+                <span>Required!!.</span>
+            }@else if (userForm.controls['lname'].hasError('minlength')) {
+               <span>name should be at least 2character long</span>
+            }@else if (userForm.controls['lname'].hasError('maxlength')) {
+                <span> name should be less than 10characters.</span>
+            }
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Username</label>
+        <div class="input-group has-validation">
+            <span class="input-group-text">&#64;</span>
+            <input type="text" class="form-control" formControlName="username">
+        </div>
+        <div class="text-danger">
+            @if(userForm.controls['username'].hasError('required')){
+                <span>Required!!.</span>
+            }@else if(userForm.controls['username'].hasError('email')){
+                <span>this is not valid email..plz enter proper.</span>
+            }
+        </div>
+
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input type="text" class="form-control" formControlName="city">
+        <div class="text-danger">
+            @if(userForm.controls['city'].hasError('required')){
+                <span>Required!!.</span>
+            }
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">State</label>
+        <select class="form-select" formControlName="state" required>
+            <option selected disabled value="">Choose...</option>
+            <option>Maharastra</option>
+            <option>Delhi</option>
+            <option>Panjab</option>
+            <option>Gujarat</option>
+            <option>Karanatka</option>
+            <option>Uttarpradesh</option>
+        </select>
+        <div class="text-danger">
+            
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label class="form-label">Zip</label>
+        <input type="text" class="form-control" formControlName="zipCode">
+        <div class="text-danger">
+            @if(userForm.controls['zipCode'].hasError('required')){
+                <span>Required!!.</span>
+            }@else if(userForm.controls['zipCode'].hasError("maxlength") || userForm.controls['zipCode'].hasError("minlength") ) {
+                <span>zipcode must be 6 digit long.</span>
+            }
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" formControlName="isAgree">
+            <label class="form-check-label" for="invalidCheck">
+                Agree to terms and conditions
+            </label>
+            <div class="text-danger">
+                @if(userForm.get('isAgree').invalid){
+                  <span>You must agree before submitting.</span>
+                }
+                
+            </div>
+        </div>
+    </div>
+    <div >
+        <button  class="btn btn-secondary" type="submit">Reset</button>
+        <button class="btn btn-primary" style="margin-left: 10px;" type="submit" [disabled]="userForm.invalid" (click)="onSave()">Save</button>
+    </div>
+</form>
+
